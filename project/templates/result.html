@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Price Result</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('{{ url_for('static', filename='images/iamond.jpeg') }}') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background-color: black;
+            color: white;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            background-color: red;
+        }
+
+        /* Result Container */
+        .result-container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 100px auto;
+        }
+
+        .result-image {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .result-container h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: white;
+            background: linear-gradient(90deg, black 0%, black 50%, red 100%);
+            background-size: 200% auto;
+            border-radius: 5px;
+            transition: background-position 0.5s ease-in-out;
+        }
+
+        .home-btn:hover {
+            background-position: right center;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <h1>Diamond Price Predictor</h1>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/predict">Predict Price</a></li>
+        </ul>
+    </div>
+
+    <!-- Result Container -->
+    <div class="result-container">
+        <img 
+            src="{% if final_result <= 951*83 %}
+                    {{ url_for('static', filename='images/red-icon.jpg') }}
+                 {% elif final_result > 951*83 and final_result <= 2401*83 %}
+                    {{ url_for('static', filename='images/green-icon.jpg') }}
+                 {% elif final_result > 2401*83 and final_result <= 5408*83 %}
+                    {{ url_for('static', filename='images/blue-icon.jpg') }}
+                 {% else %}
+                    {{ url_for('static', filename='images/grey-icon.jpg') }}
+                 {% endif %}" 
+            alt="Result Icon" 
+            class="result-image">
+        
+        <h1>Price is ₹{{ final_result }} INR</h1>
+        <a href="/" class="home-btn">Go to Home Page</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2024 Diamond Price Predictor. All rights reserved.
+    </div>
+</body>
+</html>
