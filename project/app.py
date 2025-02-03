@@ -17,8 +17,6 @@ preprocessor_path = r"notebook/artifacts/preprocessor.pkl"
 model = pickle.load(open(model_path, "rb"))
 preprocessor = pickle.load(open(preprocessor_path, "rb"))
 
-
-
 @app.route('/')
 def home_page():
     return render_template("index.html")
